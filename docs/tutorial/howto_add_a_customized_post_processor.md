@@ -9,15 +9,19 @@ In this topic, we will show how to add a customized post-processor.
 
 * Create a new C# class library project in `Visual Studio`.
 * Add nuget packages:
-    * [`System.Collections.Immutable`](https://www.nuget.org/packages/System.Collections.Immutable/1.3.1) with version 1.3.1
-    * [`Microsoft.Composition`](https://www.nuget.org/packages/Microsoft.Composition/1.0.31) with version 1.0.31
-* Add `Docfx.Plugins`
-If you are building DocFX from source code, add this reference to the project,
-otherwise add the nuget package `Docfx.Plugins` with the same version as DocFX.
+    * [`System.Collections.Immutable`](https://www.nuget.org/packages/System.Collections.Immutable)
+    * [`System.Composition`](https://www.nuget.org/packages/System.Composition)
+* Add `Docfx.Plugins`:
+    * If you are building DocFX from source code, add this reference to the project,
+    otherwise add the nuget package `Docfx.Plugins` with the same version as DocFX.
 
 ## Step1: Create a new class (MyProcessor.cs) with the following code:
 
 ```csharp
+using System.Collections.Immutable;
+using System.Composition;
+using Docfx.Plugins;
+
 [Export(nameof(MyProcessor), typeof(IPostProcessor))]
 public class MyProcessor : IPostProcessor
 {
